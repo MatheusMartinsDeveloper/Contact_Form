@@ -8,10 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        GreenLighter: "hsl(148, 38%, 91%)",
+        GreenMedium: "hsl(169, 82%, 27%)",
+        Red: "hsl(0, 66%, 54%)",
+        White: "hsl(0, 0%, 100%)",
+        GreyMedium: "hsl(186, 15%, 59%)",
+        GreyDarker: "hsl(187, 24%, 22%)",
+      },
+      fontFamily: {
+        Karla: ["Karla", "sans-serif"]
       },
     },
   },
