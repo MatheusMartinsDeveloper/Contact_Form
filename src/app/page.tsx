@@ -1,9 +1,9 @@
+import FormContainer from "./components/Form";
 
 export default function Home() {
   return (
-    <div>
-      <h1 className="text-Red text-4xl font-Karla font-[700]">Next JS</h1>
-      <h1 className="text-Red text-4xl font-[700]">Next JS</h1>
-    </div>
+    <main className="flex justify-center items-center bg-GreenLighter w-full h-[100vh]">
+      <FormContainer />
+    </main>
   );
 }
