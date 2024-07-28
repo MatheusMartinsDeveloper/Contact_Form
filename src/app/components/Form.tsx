@@ -1,8 +1,29 @@
 "use client"
+import { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 export default function FormContainer() {
+    const [data, setData] = useState<any[]>([]);
+
+    useEffect(() => {
+        const requestData = async () => {
+            try {
+                const response = await axios.get("http://localhost:1313/contact/getContacts")
+                setData(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        requestData();
+    }, []);
+
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
+
     const formSchema = Yup.object().shape({
         firstName: Yup.string()
             .required("This field is required")
@@ -23,8 +44,13 @@ export default function FormContainer() {
             .required("To submit this form, please consent to being contacted")
     });
 
-    const submit = (values: unknown): void => {
-        console.log(values);
+    const submit = async (values: unknown) => {
+        try {
+            const request = await axios.post("http://localhost:1313/contact/createContact", values)
+            console.log(request);
+        } catch (error: unknown) {
+            console.error(error);
+        }
     }
 
     return (
@@ -165,6 +191,7 @@ export default function FormContainer() {
                             />
                             <button
                                 className="text-White text-base font-Karla font-bold bg-GreenMedium border-2 border-GreenMedium rounded-lg p-3 w-full hover:bg-transparent hover:text-GreenMedium"
+                                type="submit"
                                 onClick={submit}
                             > Submit
                             </button>
